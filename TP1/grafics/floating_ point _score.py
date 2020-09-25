@@ -11,4 +11,5 @@ plt.title("Floating Point Score")
 # nomeia o eixo x
 plt.xticks([i + 0.5 for i, _ in enumerate(computers)], computers)
 plt.show()
+
 #mflops
