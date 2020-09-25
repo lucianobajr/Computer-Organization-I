@@ -1,1 +1,1 @@
-print("Teste, Cruzeiro serie C.")
+print("Teste, Cruzeiro serie D.")
