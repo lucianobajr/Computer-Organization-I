@@ -37,6 +37,29 @@ def add_zero(binary, number_command_bits):
 def change_reg_to_bin(register):
     return str(bin(registers[register]))[2:]  # apatir da 2 posição do string -> retirando 0b
 
+#------FUNCTIONS NUMERICAL BASES------
+def IsNumericBase(s, base):
+    try:
+        v = int(s, base)
+
+        if(v):
+            return True
+        else:
+            return False
+
+    except ValueError:
+        return False
+
+def IsBinaryString(s):
+    return IsNumericBase(s, 2)
+
+def IsOctalString(s):
+    return IsNumericBase(s, 8)
+
+def IsHexadecimalString(s):
+    return IsNumericBase(s, 16)
+#------FUNCTIONS NUMERICAL BASES------
+
 
 ''' Torna código assembly em binário'''
 def assembler(file_line):
@@ -68,6 +91,15 @@ def assembler(file_line):
 
     elif instructions[command]['type'] == 'i':
         immediate = regs[2] # valor imediato
+        
+        # Garante o suporte a outras bases numéricas
+        if(IsBinaryString(immediate)):
+            immediate = str(int(immediate,2))
+        elif (IsOctalString(immediate)):
+            immediate = str(int(immediate,8))
+        elif (IsHexadecimalString(immediate)):
+            immediate = str(int(immediate,16))
+
         ''' 
         - & = and bit a bit 
         - reseta um ou mais bits sem afetar o estado dos demais 

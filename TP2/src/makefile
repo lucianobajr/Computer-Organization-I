@@ -1,5 +1,5 @@
-INPUT=./examples/input.asm
-OUTPUT=./examples/output.bin
+INPUT=./tests/input.asm
+OUTPUT=./tests/output.bin
 
 # assembler
 ASSEMBLER = main.py
