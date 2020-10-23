@@ -1,0 +1,26 @@
+{
+    "move": {
+        "type": "i",
+        "funct7": "None",
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "load_immd": {
+        "type": "i",
+        "funct7": "None",
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "jump": {
+        "type": "uj",
+        "funct7": "None",
+        "funct3": "None",
+        "opcode": "1101111"
+    },
+    "load_address": {
+        "type": "u",
+        "funct7": "None",
+        "funct3": "None",
+        "opcode": "0110111"
+    }
+}

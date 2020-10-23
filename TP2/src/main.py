@@ -14,7 +14,12 @@ with open('data/instructions.json', 'r') as json_file:
 '''
 with open('data/registers.json', 'r') as json_file:
     registers = json.load(json_file)    
-    
+
+'''
+    lê o json com as pseudo-instruções do risc-v
+'''   
+with open('data/pseudo.json', 'r') as json_file:
+    pseudo = json.load(json_file)
 #----------------------JSONS--------------------------
 
 
@@ -59,6 +64,10 @@ def IsOctalString(s):
 def IsHexadecimalString(s):
     return IsNumericBase(s, 16)
 #------FUNCTIONS NUMERICAL BASES------
+
+#------FUNCTION PSEUDO INSTRUCTION ------
+
+#------FUNCTION PSEUDO INSTRUCTION ------
 
 
 ''' Torna código assembly em binário'''
@@ -116,6 +125,8 @@ def assembler(file_line):
         immediate = add_zero(immediate, 12)
         rs1 = add_zero(rs1, 5)
         rd = add_zero(rd, 5)
+
+
 
         binary_result = immediate + rs1 + f3 + rd + opcode
 
