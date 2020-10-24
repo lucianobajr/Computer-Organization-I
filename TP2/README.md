@@ -4,6 +4,7 @@
 
 
 <code><h1 align="center">Instalação</h1></code>
+<code><img height="50" src="https://svgshare.com/i/NQC.svg"></code>
 
 ### Atualizar o sistema com o apt
 
