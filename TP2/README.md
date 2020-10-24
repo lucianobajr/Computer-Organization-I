@@ -48,7 +48,7 @@
     clear:
         rm $(OUTPUT)
 
-<code align="center"><h1 >Estrutura de Projeto</h1></code>
+<code ><h1 align="center">Estrutura de Projeto</h1></code>
 
 ### A  estruturação do projeto segue o esquema a seguir:
 
@@ -68,11 +68,19 @@
     
     input.asm
 
-        add x9, x20, x21   
+        add x2, x0, x1
+        sll x1, x2, x2
+        or x2, x2, x1
+        andi x2, x1, 16
+        addi x3, x2, -243 
 
     output
 
-        00000001010110100000010010110011
+        00000000000100000000000100110011
+        00000000001000010001000010110011
+        00000000000100010110000100110011
+        00000001000000001111000100010011
+        11110000110100010000000110010011
 
 
  
