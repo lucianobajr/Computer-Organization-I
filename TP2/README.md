@@ -3,5 +3,4 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 
-<code align="center"><img sttyle="margin-bottom:20x;" height="50" src="https://svgshare.com/i/NQC.svg"></code>
-<h1 align="center">Instalação </h1>
+<code ><img align="center" height="50" src="https://svgshare.com/i/NQC.svg"><h1 align="center">Instalação </h1></code>
