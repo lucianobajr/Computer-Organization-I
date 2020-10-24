@@ -47,9 +47,8 @@ def change_reg_to_bin(register):
     # apatir da 2 posição do string -> retirando 0b
     return str(bin(registers[register]))[2:]
 
+
 # ------FUNCTIONS NUMERICAL BASES------
-
-
 def IsNumericBase(s, base):
     try:
         v = int(s, base)
@@ -61,7 +60,6 @@ def IsNumericBase(s, base):
 
     except ValueError:
         return False
-
 
 def IsBinaryString(s):
     return IsNumericBase(s, 2)
@@ -77,8 +75,6 @@ def IsHexadecimalString(s):
 
 
 ''' Torna código assembly em binário'''
-
-
 def assembler(file_line):
     # lê a linha até o  primeiro espaço
     command = file_line[: file_line.find(" ")]
@@ -121,10 +117,11 @@ def assembler(file_line):
 
 
         ''' 
-        - & = and bit a bit 
-        - reseta um ou mais bits sem afetar o estado dos demais 
-        - operação & -> complemento de dois 
+            - & = and bit a bit 
+            - reseta um ou mais bits sem afetar o estado dos demais 
+            - operação & -> complemento de dois 
         '''
+
         immediate = (bin(int(immediate) & 0b111111111111))
         immediate = immediate.replace('0b', "") # retira valores da transformação para binário
         
@@ -139,7 +136,6 @@ def assembler(file_line):
 
         binary_result = immediate + rs1 + f3 + rd + opcode
 
-
     return binary_result
 
 def print_output():
@@ -149,6 +145,7 @@ def print_output():
 
 # --------------------FUNCTIONS----------------------
 
+#-----------------------MAIN-------------------------
 if __name__ == "__main__":
     with open(str(sys.argv[2]), 'r') as file_input: # arquivo de input
         output = open(str(sys.argv[3]), 'w')   # arquivo de output
@@ -160,3 +157,4 @@ if __name__ == "__main__":
                 break
             output.write(assembler(file_line)+'\n')
             print(assembler(file_line))
+#-----------------------MAIN-------------------------
