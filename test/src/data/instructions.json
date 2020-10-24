@@ -1,0 +1,71 @@
+{
+    "add": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "000",
+        "opcode": "0110011"
+    },
+    "sub": {
+        "type": "r",
+        "funct7": "0100000",
+        "funct3": "000",
+        "opcode": "0110011"
+    },
+    "and": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "111",
+        "opcode": "0110011"
+    },
+    "or": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "110",
+        "opcode": "0110011"
+    },
+    "xor": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "100",
+        "opcode": "0110011"
+    },
+    "sll": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "001",
+        "opcode": "0110011"
+    },
+    "srl": {
+        "type": "r",
+        "funct7": "0000000",
+        "funct3": "101",
+        "opcode": "0110011"
+    },
+    "addi": {
+        "type": "i",
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "andi": {
+        "type": "i",
+        "funct3": "111",
+        "opcode": "0010011"
+    },
+    "ori": {
+        "type": "i",
+        "funct3": "110",
+        "opcode": "0010011"
+    },
+    "mv": {
+        "type": "i",
+        "funct7": null,
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "lui": {
+        "type": "u",
+        "funct7": null,
+        "funct3": null,
+        "opcode": "0110111"
+    }
+}

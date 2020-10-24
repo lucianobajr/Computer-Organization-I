@@ -111,14 +111,14 @@ def assembler(file_line):
     elif instructions[command]['type'] == 'i':
         immediate = regs[2]  # valor imediato
 
-        if(((immediate[0] is '0') and (immediate[1] is 'b')) or ((immediate[0] is '0') and (immediate[1] is 'o')) or ((immediate[0] is '0') and (immediate[1] is 'x'))):
-            if(immediate[0] is '0' and immediate[1] is 'b'):
-                immediate = str(int(immediate, 2))
-            elif (immediate[0] is '0' and immediate[1] is 'o'):
-                immediate = str(int(immediate, 8))
-            elif (immediate[0] is '0' and immediate[1] is 'x'):
-                immediate = str(int(immediate, 16))
-        
+        # Garante o suporte a outras bases numéricas
+        if(IsBinaryString(immediate)):
+            immediate = str(int(immediate, 2))
+        elif (IsOctalString(immediate)):
+            immediate = str(int(immediate, 8))
+        elif (IsHexadecimalString(immediate)):
+            immediate = str(int(immediate, 16))
+
         ''' 
         - & = and bit a bit 
         - reseta um ou mais bits sem afetar o estado dos demais 

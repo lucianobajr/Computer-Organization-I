@@ -1,0 +1,26 @@
+{
+    "lui": {
+        "type": "u",
+        "funct7": null,
+        "funct3": null,
+        "opcode": "0110111"
+    },
+    "mv": {
+        "type": "i",
+        "funct7": "None",
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "ld": {
+        "type": "i",
+        "funct7": "None",
+        "funct3": "000",
+        "opcode": "0010011"
+    },
+    "jal": {
+        "type": "uj",
+        "funct7": "None",
+        "funct3": "None",
+        "opcode": "1101111"
+    }
+}
