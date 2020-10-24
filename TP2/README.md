@@ -48,8 +48,9 @@
     clear:
         rm $(OUTPUT)
 
-<code><h1 align="center">Estrutura de Projeto</h1></code>
-### O makefile da aplicação possui os campos 'input' com o arquivo de entrada para teste em assembly, 'output' arquivo de saída em binário e 'assembler' com o arquivo principal do programa  
+<code align="center"><h1 >Estrutura de Projeto</h1></code>
+
+### A  estruturação do projeto segue o esquema a seguir:
 
     ├── src                       # Source
     │   ├── makefile              # Build Scripts
@@ -60,3 +61,18 @@
     |   |    ├── output    
     │   ├── main.py               # Aplication code
     |
+
+<code><h1 align="center">Exemplo</h1></code>
+
+### Utilizando alguns dos exemplos vistos durante as aulas, podemos perceber que o trabalho prático atingiu os objetivos esperados, assim como mostrado a seguir:
+    
+    input.asm
+
+        add x9, x20, x21   
+
+    output
+
+        00000001010110100000010010110011
+
+
+ 
