@@ -1,7 +1,7 @@
 import sys
 import json
 
-#----------------------JSONS--------------------------
+# ----------------------JSONS--------------------------
 
 '''
     lê o json com as instruções do risc-v
@@ -13,22 +13,24 @@ with open('data/instructions.json', 'r') as json_file:
     lê o json com os registradores do risc-v
 '''
 with open('data/registers.json', 'r') as json_file:
-    registers = json.load(json_file)    
-
+    registers = json.load(json_file)
 '''
     lê o json com as pseudo-instruções do risc-v
 '''   
 with open('data/pseudo.json', 'r') as json_file:
     pseudo = json.load(json_file)
-#----------------------JSONS--------------------------
+
+# ----------------------JSONS--------------------------
 
 
-#--------------------FUNCTIONS----------------------
+# --------------------FUNCTIONS----------------------
 
 '''
-    Adiciona 0's até o comando possuir o 
-    seu devido número de bits
+    Adiciona 0's até o comando possuir o
+    seu devido número de bits.Extensão de sinal
 '''
+
+
 def add_zero(binary, number_command_bits):
     while len(binary) < number_command_bits:
         binary = "0" + binary
@@ -36,13 +38,18 @@ def add_zero(binary, number_command_bits):
 
 
 '''
-    transforma o valor correspondente do 
+    transforma o valor correspondente do
     registrador em decimal para binário
 '''
-def change_reg_to_bin(register):
-    return str(bin(registers[register]))[2:]  # apatir da 2 posição do string -> retirando 0b
 
-#------FUNCTIONS NUMERICAL BASES------
+
+def change_reg_to_bin(register):
+    # apatir da 2 posição do string -> retirando 0b
+    return str(bin(registers[register]))[2:]
+
+# ------FUNCTIONS NUMERICAL BASES------
+
+
 def IsNumericBase(s, base):
     try:
         v = int(s, base)
@@ -55,41 +62,44 @@ def IsNumericBase(s, base):
     except ValueError:
         return False
 
+
 def IsBinaryString(s):
     return IsNumericBase(s, 2)
+
 
 def IsOctalString(s):
     return IsNumericBase(s, 8)
 
+
 def IsHexadecimalString(s):
     return IsNumericBase(s, 16)
-#------FUNCTIONS NUMERICAL BASES------
-
-#------FUNCTION PSEUDO INSTRUCTION ------
-
-#------FUNCTION PSEUDO INSTRUCTION ------
+# ------FUNCTIONS NUMERICAL BASES------
 
 
 ''' Torna código assembly em binário'''
+
+
 def assembler(file_line):
-    command = file_line[: file_line.find(" ")]  #lê a linha até o  primeiro espaço
+    # lê a linha até o  primeiro espaço
+    command = file_line[: file_line.find(" ")]
     regs = file_line[file_line.find(" "):].split(",")
     for i in range(len(regs)):
-        regs[i] = regs[i].strip() # retira o espaço e o '\n' de cada registrador
+        # retira o espaço e o '\n' de cada registrador
+        regs[i] = regs[i].strip()
 
     binary_result = ""
 
     if instructions[command]['type'] == 'r':
         f7 = instructions[command]['funct7']
-        rs2 = change_reg_to_bin(regs[2]) # terceiro reg
-        rs1 = change_reg_to_bin(regs[1]) # segundo reg
+        rs2 = change_reg_to_bin(regs[2])  # terceiro reg
+        rs1 = change_reg_to_bin(regs[1])  # segundo reg
         rd = change_reg_to_bin(regs[0])  # primeiro reg
         f3 = instructions[command]['funct3']
         opcode = instructions[command]['opcode']
 
-        ''' 
-            rs2,rs1 e rd podem ainda não estar com o 
-                tamanho correto de bits 
+        '''
+            rs2,rs1 e rd podem ainda não estar com o
+                tamanho correto de bits
         '''
 
         rs2 = add_zero(rs2, 5)
@@ -99,15 +109,16 @@ def assembler(file_line):
         binary_result = f7 + rs2 + rs1 + f3 + rd + opcode
 
     elif instructions[command]['type'] == 'i':
-        immediate = regs[2] # valor imediato
-        
+        immediate = regs[2]  # valor imediato
+
         # Garante o suporte a outras bases numéricas
-        if(IsBinaryString(immediate)):
-            immediate = str(int(immediate,2))
-        elif (IsOctalString(immediate)):
-            immediate = str(int(immediate,8))
-        elif (IsHexadecimalString(immediate)):
-            immediate = str(int(immediate,16))
+        if(immediate[0] is '0' and immediate[1] is 'b'):
+            immediate = str(int(immediate, 2))
+        elif (immediate[0] is '0' and immediate[1] is 'o'):
+            immediate = str(int(immediate, 8))
+        elif (immediate[0] is '0' and immediate[1] is 'x'):
+            immediate = str(int(immediate, 16))
+
 
         ''' 
         - & = and bit a bit 
@@ -126,8 +137,6 @@ def assembler(file_line):
         rs1 = add_zero(rs1, 5)
         rd = add_zero(rd, 5)
 
-
-
         binary_result = immediate + rs1 + f3 + rd + opcode
 
 
@@ -138,7 +147,7 @@ def print_output():
     print('-----------  OUTPUT  -----------')
     print('\n')
 
-#--------------------FUNCTIONS----------------------
+# --------------------FUNCTIONS----------------------
 
 if __name__ == "__main__":
     with open(str(sys.argv[2]), 'r') as file_input: # arquivo de input
