@@ -2,7 +2,6 @@ import sys
 import json
 
 # ----------------------JSONS--------------------------
-
 '''
     lê o json com as instruções do risc-v
 '''
@@ -14,12 +13,6 @@ with open('data/instructions.json', 'r') as json_file:
 '''
 with open('data/registers.json', 'r') as json_file:
     registers = json.load(json_file)
-
-'''
-    lê o json com as pseudo-instruções do risc-v
-'''
-with open('data/pseudo.json', 'r') as json_file:
-    pseudo = json.load(json_file)
 # ----------------------JSONS--------------------------
 
 
@@ -149,15 +142,23 @@ def print_output():
 
 # --------------------FUNCTIONS----------------------
 
-
 if __name__ == "__main__":
     with open(str(sys.argv[2]), 'r') as file_input:  # arquivo de input
-        output = open(str(sys.argv[3]), 'w')   # arquivo de output
-        print_output()
-        while True:
-            file_line = file_input.readline()
-            if not file_line:
-                print_output()
-                break
-            output.write(assembler(file_line)+'\n')
-            print(assembler(file_line))
+        if(len(sys.argv)==4):                        # com arquivo de saída
+            output = open(str(sys.argv[3]), 'w')
+            print_output()
+            while True:
+                file_line = file_input.readline()
+                if not file_line:
+                    print_output()
+                    break
+                output.write(assembler(file_line)+'\n')
+                print(assembler(file_line))
+        else:                                      # sem arquivo de saída 
+            print_output()
+            while True:
+                file_line = file_input.readline()
+                if not file_line:
+                    print_output()
+                    break
+                print(assembler(file_line))
