@@ -1,6 +1,12 @@
 module controle(
-    input wire [6:0] opcode;
-    output reg Branch, MemRead, MemtoReg, MemWrite, alusrc, regwrite, [1:0] aluop;
+    input wire [6:0] opcode,
+    output reg Branch, 
+    output reg MemRead, 
+    output reg MemtoReg, 
+    output reg MemWrite, 
+    output reg alusrc, 
+    output reg regwrite, 
+    output reg [1:0] aluop
 );
 
     parameter R_Type = 7'b0110011;
@@ -8,7 +14,7 @@ module controle(
     parameter SD = 7'b0100011;
     parameter BEQ = 7'b1100111;
 
-    always @(*) begin
+    always @* begin
         case (opcode)
             R_Type:
                 begin
@@ -50,7 +56,8 @@ module controle(
                     regwrite = 1'b0;
                     aluop = 2'b01;
                 end 
-            default: $display("Opcode não identificado!!!")
+            
+            default: $display("Opcode não identificado!!!");
         endcase
     end
 
