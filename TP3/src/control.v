@@ -1,28 +1,56 @@
 module controle(
     input wire [6:0] opcode;
-    output reg [3:0] ex;
-    output reg [2:0] mem;
-    output reg [1:0] write_back
+    output reg Branch, MemRead, MemtoReg, MemWrite, alusrc, regwrite, [1:0] aluop;
 );
 
-    parameter ADD = 7'b0110011;
-    parameter SUB = 7'b0110011;
-    parameter AND = 7'b0110011;
-    parameter OR = 7'b0110011;
+    parameter R_Type = 7'b0110011;
     parameter LD = 7'b0000011;
     parameter SD = 7'b0100011;
     parameter BEQ = 7'b1100111;
 
-    initial begin
-        ex <= 4'b0000;
-        mem <= 3'b000;
-        write_back <= 2'b00;
-    end
-
     always @(*) begin
         case (opcode)
-            ADD: 
-            default: 
+            R_Type:
+                begin
+                    Branch = 1'b0;
+                    MemRead = 1'b0;
+                    MemtoReg = 1'b0;
+                    MemWrite = 1'b0;
+                    alusrc = 1'b0;
+                    regwrite = 1'b1;
+                    aluop = 2'b10;
+                end
+            LD:
+                begin
+                    Branch = 1'b0;
+                    MemRead = 1'b1;
+                    MemtoReg = 1'b1;
+                    MemWrite = 1'b0;
+                    alusrc = 1'b1;
+                    regwrite = 1'b1;
+                    aluop = 2'b00;
+                end
+            SD:
+                begin
+                    Branch = 1'b0;
+                    MemRead = 1'b0;
+                    MemtoReg = 1'b1;
+                    MemWrite = 1'b1;
+                    alusrc = 1'b1;
+                    regwrite = 1'b0;
+                    aluop = 2'b00;
+                end
+            BEQ:
+                begin
+                    Branch = 1'b1;
+                    MemRead = 1'b0;
+                    MemtoReg = 1'b1;
+                    MemWrite = 1'b0;
+                    alusrc = 1'b0;
+                    regwrite = 1'b0;
+                    aluop = 2'b01;
+                end 
+            default: $display("Opcode não identificado!!!")
         endcase
     end
 
