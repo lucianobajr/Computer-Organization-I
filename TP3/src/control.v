@@ -1,20 +1,31 @@
-module controle(
-    input wire [6:0] opcode,
-    output reg Branch, 
-    output reg MemRead, 
-    output reg MemtoReg, 
-    output reg MemWrite, 
-    output reg alusrc, 
-    output reg regwrite, 
-    output reg [1:0] aluop
+module control(
+    opcode,
+    Branch, 
+    MemRead, 
+    MemtoReg, 
+    MemWrite, 
+    alusrc, 
+    regwrite, 
+    aluop,
+    RegDst
 );
+    input wire [5:0] opcode;
+    output reg Branch; 
+    output reg MemRead; 
+    output reg MemtoReg; 
+    output reg MemWrite; 
+    output reg alusrc; 
+    output reg regwrite; 
+    output reg [1:0] aluop;
+    output reg RegDst;
+
 
     parameter R_Type = 7'b0110011;
     parameter LD = 7'b0000011;
     parameter SD = 7'b0100011;
     parameter BEQ = 7'b1100111;
 
-    always @* begin
+    always @(*) begin
         case (opcode)
             R_Type:
                 begin
