@@ -11,12 +11,14 @@
 
 module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
   input wire clock, Reset;
-  output wire [31:0]Prx_PC, Instruction, ALUResult;
-  wire [31:0]ResultPC, Soma;
-  wire [31:0]ValSignExtend, Data1, Data2, DataAux, WriteData, ShiftValue, ReadData, PC;
-  wire [4:0]WriteReg;
+  output wire [31:0] Prx_PC, Instruction, ALUResult;
+  wire [31:0] ResultPC, Soma;
+  wire [31:0] ValSignExtend, DataAux, ShiftValue, ReadData, PC;
+  wire [31:0] Data1, Data2,WriteData;
+  wire WriteReg;
   wire [3:0]ALUCtrl;
-  wire Cout, RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, Zero, ANDBranch;
+  wire [4:0] RegWrite;
+  wire Cout, RegDst, Branch, MemRead, MemtoReg, MemWrite, RegWriteControl ,ALUSrc, Zero, ANDBranch;
   wire [1:0]ALUOp;
 
   program_counter CatchPC (
@@ -24,7 +26,6 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .reset(Reset), 
     .pc_next(Prx_PC)
   );
-
 
   Sum4 PC4 (
     .pc(Prx_PC), 
@@ -37,14 +38,14 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
   );
 
   control CatchVal (
-    .opcode(Instruction[31:26]), 
+    .opcode(Instruction[6:0]), 
     .RegDst(RegDst), 
     .Branch(Branch), 
     .MemRead(MemRead), 
     .MemtoReg(MemtoReg), 
     .MemWrite(MemWrite), 
     .alusrc(ALUSrc), 
-    .regwrite(RegWrite), 
+    .regwrite(RegWriteControl), 
     .aluop(ALUOp)
   );
 
@@ -55,28 +56,28 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
 
   alu_control CatchOp (
     .alu_operation(ALUOp), 
-    .funct7(Instruction[9:3]), 
-    .funct3(Instruction[2:0]), 
+    .funct7(Instruction[31:25]), 
+    .funct3(Instruction[14:12]), 
     .alu_ctr(ALUCtrl)
   );
 
   mux1 u1 (
-    .data0(Instruction[20:16]), 
-    .data1(Instruction[15:11]), 
+    .data0(Instruction[19:15]), //rs1
+    .data1(Instruction[24:20]), //rs2
     .select(RegDst), 
     .out(WriteReg)
   );
 
   reg_file Reg (
-    .Read1(Instruction[25:21]),  
-    .Read2(Instruction[20:16]),  
-    .WriteReg(WriteReg),   
-    .WriteData(WriteData),  
-    .RegWrite(RegWrite),   
-    .Data1(Data1),  
-    .Data2(Data2),   
+    .rs1(Instruction[19:15]),  
+    .rs2(Instruction[24:20]),  
+    .writereg(WriteReg),   
+    .writedata(WriteData),  
+    .rd(Instruction[11:7]),   
+    .readdata1(Data1),  
+    .readdata2(Data2),   
     .clock(clock),  
-    .Reset(Reset)
+    .reset(Reset)
   );
 
   mux2 u2 (

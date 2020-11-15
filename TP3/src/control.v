@@ -9,7 +9,7 @@ module control(
     aluop,
     RegDst
 );
-    input wire [5:0] opcode;
+    input wire [6:0] opcode;
     output reg Branch; 
     output reg MemRead; 
     output reg MemtoReg; 

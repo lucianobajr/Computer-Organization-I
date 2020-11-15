@@ -1,5 +1,5 @@
 $date
-	Sun Nov 15 10:43:29 2020
+	Sun Nov 15 16:25:26 2020
 $end
 $version
 	Icarus Verilog
@@ -18,12 +18,12 @@ $var wire 32 & PC [31:0] $end
 $var wire 1 % Reset $end
 $var wire 1 $ clock $end
 $var wire 1 ' Zero $end
-$var wire 5 ( WriteReg [4:0] $end
+$var wire 1 ( WriteReg $end
 $var wire 32 ) WriteData [31:0] $end
 $var wire 32 * ValSignExtend [31:0] $end
 $var wire 32 + Soma [31:0] $end
 $var wire 32 , ShiftValue [31:0] $end
-$var wire 1 - RegWrite $end
+$var wire 1 - RegWriteControl $end
 $var wire 1 . RegDst $end
 $var wire 32 / ReadData [31:0] $end
 $var wire 32 0 Prx_PC [31:0] $end
@@ -92,7 +92,7 @@ $var wire 32 R a [31:0] $end
 $var reg 32 S alu_out [31:0] $end
 $upscope $end
 $scope module CatchVal $end
-$var wire 6 T opcode [5:0] $end
+$var wire 7 T opcode [6:0] $end
 $var reg 1 8 Branch $end
 $var reg 1 3 MemRead $end
 $var reg 1 2 MemWrite $end
@@ -107,21 +107,22 @@ $var wire 32 V pc [31:0] $end
 $var reg 32 W sum [31:0] $end
 $upscope $end
 $scope module Reg $end
-$var wire 5 X Read1 [4:0] $end
-$var wire 5 Y Read2 [4:0] $end
-$var wire 1 - RegWrite $end
-$var wire 1 % Reset $end
 $var wire 1 $ clock $end
-$var wire 5 Z WriteReg [4:0] $end
-$var wire 32 [ WriteData [31:0] $end
-$var reg 32 \ Data1 [31:0] $end
-$var reg 32 ] Data2 [31:0] $end
+$var wire 5 X rd [4:0] $end
+$var wire 1 % reset $end
+$var wire 5 Y rs1 [4:0] $end
+$var wire 5 Z rs2 [4:0] $end
+$var wire 1 ( writereg $end
+$var wire 32 [ writedata [31:0] $end
+$var reg 32 \ readdata1 [31:0] $end
+$var reg 32 ] readdata2 [31:0] $end
+$var integer 32 ^ i [31:0] $end
 $upscope $end
 $scope module u1 $end
-$var wire 5 ^ data0 [4:0] $end
-$var wire 5 _ data1 [4:0] $end
+$var wire 5 _ data0 [4:0] $end
+$var wire 5 ` data1 [4:0] $end
 $var wire 1 . select $end
-$var reg 5 ` out [4:0] $end
+$var reg 1 ( out $end
 $upscope $end
 $scope module u2 $end
 $var wire 32 a data0 [31:0] $end
@@ -202,7 +203,7 @@ bx ,
 bx +
 bx *
 bx )
-bx (
+x(
 x'
 bx &
 x%
@@ -221,14 +222,15 @@ b100100000100000 *
 b100100000100000 >
 b100100000100000 D
 b100100000100000 b
-b10100 Y
-b10011 X
-b1001 _
-b10100 ^
-b0 G
-b100 H
+b10000 X
+b111 Z
+b1000 Y
+b111 `
+b1000 _
+b100 G
+b1 H
 b100100000100000 C
-b0 T
+b100000 T
 b10011101000100100000100000 "
 b10011101000100100000100000 4
 b10011101000100100000100000 F
@@ -238,6 +240,7 @@ b0 0
 b0 E
 b0 L
 b0 V
+b100000 ^
 1%
 1$
 #3
@@ -255,13 +258,13 @@ bx 0
 bx E
 bx L
 bx V
-b10100 6
-b10100 @
-b10100 ]
-b10100 a
-b10011 7
-b10011 R
-b10011 \
+b0 6
+b0 @
+b0 ]
+b0 a
+b0 7
+b0 R
+b0 \
 0%
 1$
 #5
@@ -477,6 +480,7 @@ b0 0
 b0 E
 b0 L
 b0 V
+b100000 ^
 1%
 1$
 #109

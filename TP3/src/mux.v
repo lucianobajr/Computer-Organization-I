@@ -1,7 +1,7 @@
 module mux1 (data0,data1,select,out);
   input wire [4:0] data0, data1;
   input wire select; 
-  output reg [4:0] out;
+  output reg out;
   always @(data0, data1, select) begin
     case (select) 
       0: out <= data0;

@@ -10,8 +10,8 @@
 
 module program_counter (pc, reset, pc_next);
   input wire reset;
-  output reg [31:0]pc;
-  output reg [31:0]pc_next;
+  output reg [31:0] pc;
+  output reg [31:0] pc_next;
   always @ (*) begin
     if(reset) begin
       pc_next <= 32'd0;
