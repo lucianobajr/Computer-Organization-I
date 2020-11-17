@@ -6,8 +6,7 @@ module control(
     MemWrite, 
     alusrc, 
     regwrite, 
-    aluop,
-    RegDst
+    aluop
 );
     input wire [6:0] opcode;
     output reg Branch; 
@@ -17,8 +16,6 @@ module control(
     output reg alusrc; 
     output reg regwrite; 
     output reg [1:0] aluop;
-    output reg RegDst;
-
 
     parameter R_Type = 7'b0110011;
     parameter LD = 7'b0000011;
