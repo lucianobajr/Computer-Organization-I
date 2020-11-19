@@ -28,8 +28,4 @@ module AND (A, B, Exit);
   always @ (*) begin
     Exit <= A & B;
   end
-<<<<<<< HEAD
 endmodule
-=======
-endmodule
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea

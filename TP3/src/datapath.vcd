@@ -1,0 +1,590 @@
+$date
+	Thu Nov 19 14:55:48 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 32 ! PC [31:0] $end
+$var wire 32 " Instruction [31:0] $end
+$var wire 32 # ALUResult [31:0] $end
+$var reg 1 $ Clock $end
+$var reg 1 % Reset $end
+$scope module Call $end
+$var wire 32 & PC [31:0] $end
+$var wire 1 % Reset $end
+$var wire 1 $ clock $end
+$var wire 1 ' Zero $end
+$var wire 1 ( WriteReg $end
+$var wire 32 ) WriteData [31:0] $end
+$var wire 32 * ValSignExtend [31:0] $end
+$var wire 32 + Soma [31:0] $end
+$var wire 32 , ShiftValue [31:0] $end
+$var wire 1 - RegWriteControl $end
+$var wire 1 . RegDst $end
+$var wire 32 / ReadData [31:0] $end
+$var wire 32 0 Prx_PC [31:0] $end
+$var wire 1 1 MemtoReg $end
+$var wire 1 2 MemWrite $end
+$var wire 1 3 MemRead $end
+$var wire 32 4 Instruction [31:0] $end
+$var wire 32 5 DataAux [31:0] $end
+$var wire 32 6 Data2 [31:0] $end
+$var wire 32 7 Data1 [31:0] $end
+$var wire 1 8 Branch $end
+$var wire 1 9 ANDBranch $end
+$var wire 1 : ALUSrc $end
+$var wire 32 ; ALUResult [31:0] $end
+$var wire 2 < ALUOp [1:0] $end
+$var wire 4 = ALUCtrl [3:0] $end
+$scope module CatchBranch $end
+$var wire 32 > ValSignExtend [31:0] $end
+$var reg 32 ? Result [31:0] $end
+$upscope $end
+$scope module CatchBranch1 $end
+$var wire 1 ' B $end
+$var wire 1 8 A $end
+$var reg 1 9 Exit $end
+$upscope $end
+$scope module CatchDat $end
+$var wire 1 $ clock $end
+$var wire 1 % reset $end
+$var wire 32 @ write_data [31:0] $end
+$var wire 1 2 mem_write $end
+$var wire 1 3 mem_read $end
+$var wire 32 A address [31:0] $end
+$var reg 32 B result [31:0] $end
+$upscope $end
+$scope module CatchImdEnd $end
+$var wire 16 C in [15:0] $end
+$var reg 32 D extensor [31:0] $end
+$upscope $end
+$scope module CatchIns $end
+$var wire 32 E instrucaoOut [31:0] $end
+$var wire 32 F endereco [31:0] $end
+$upscope $end
+$scope module CatchOp $end
+$var wire 3 G funct3 [2:0] $end
+$var wire 7 H funct7 [6:0] $end
+$var wire 2 I alu_operation [1:0] $end
+$var reg 4 J alu_ctr [3:0] $end
+$upscope $end
+$scope module CatchPC $end
+$var wire 1 % reset $end
+$var reg 32 K pc [31:0] $end
+$var reg 32 L pc_next [31:0] $end
+$upscope $end
+$scope module CatchPC2 $end
+$var wire 32 M A [31:0] $end
+$var wire 1 9 ANDBranch $end
+$var wire 32 N B [31:0] $end
+$var wire 1 $ clock $end
+$var reg 32 O Sum [31:0] $end
+$upscope $end
+$scope module CatchResult $end
+$var wire 4 P alu_control [3:0] $end
+$var wire 1 ' zero $end
+$var wire 32 Q b [31:0] $end
+$var wire 32 R a [31:0] $end
+$var reg 32 S alu_out [31:0] $end
+$upscope $end
+$scope module CatchVal $end
+$var wire 7 T opcode [6:0] $end
+$var reg 1 8 Branch $end
+$var reg 1 3 MemRead $end
+$var reg 1 2 MemWrite $end
+$var reg 1 1 MemtoReg $end
+$var reg 1 . RegDst $end
+$var reg 2 U aluop [1:0] $end
+$var reg 1 : alusrc $end
+$var reg 1 - regwrite $end
+$upscope $end
+$scope module PC4 $end
+$var wire 32 V pc [31:0] $end
+$var reg 32 W sum [31:0] $end
+$upscope $end
+$scope module Reg $end
+$var wire 1 $ clock $end
+$var wire 5 X rd [4:0] $end
+$var wire 1 % reset $end
+$var wire 5 Y rs1 [4:0] $end
+$var wire 5 Z rs2 [4:0] $end
+$var wire 1 ( writereg $end
+$var wire 32 [ writedata [31:0] $end
+$var reg 32 \ readdata1 [31:0] $end
+$var reg 32 ] readdata2 [31:0] $end
+$var integer 32 ^ i [31:0] $end
+$upscope $end
+$scope module u1 $end
+$var wire 5 _ data0 [4:0] $end
+$var wire 5 ` data1 [4:0] $end
+$var wire 1 . select $end
+$var reg 1 ( out $end
+$upscope $end
+$scope module u2 $end
+$var wire 32 a data0 [31:0] $end
+$var wire 32 b data1 [31:0] $end
+$var wire 1 : select $end
+$var reg 32 c out [31:0] $end
+$upscope $end
+$scope module u4 $end
+$var wire 32 d data0 [31:0] $end
+$var wire 32 e data1 [31:0] $end
+$var wire 1 1 select $end
+$var reg 32 f out [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+bx T
+bx S
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+bx L
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+x:
+x9
+x8
+bx 7
+bx 6
+bx 5
+bx 4
+x3
+x2
+x1
+bx 0
+bx /
+x.
+x-
+bx ,
+bx +
+bx *
+bx )
+x(
+x'
+bx &
+x%
+x$
+bx #
+bx "
+bx !
+$end
+#1
+0$
+#2
+b11111111111111100000001011001100 ,
+b11111111111111100000001011001100 ?
+b11111111111111100000001011001100 N
+09
+b10 =
+b10 J
+b10 P
+b11111111111111111000000010110011 *
+b11111111111111111000000010110011 >
+b11111111111111111000000010110011 D
+b11111111111111111000000010110011 b
+b100 W
+b10 <
+b10 I
+b10 U
+1-
+0:
+02
+01
+03
+08
+b1 X
+b10 Z
+b1 Y
+b10 `
+b1 _
+b0 G
+b0 H
+b1000000010110011 C
+b110011 T
+b1000001000000010110011 "
+b1000001000000010110011 4
+b1000001000000010110011 E
+b0 !
+b0 0
+b0 F
+b0 L
+b0 V
+b100000 ^
+1%
+1$
+#3
+0$
+#4
+bx00 ,
+bx00 ?
+bx00 N
+b0 )
+b0 [
+b0 f
+bx *
+bx >
+bx D
+bx b
+1'
+b0 #
+b0 ;
+b0 A
+b0 S
+b0 d
+bx W
+bx X
+bx Z
+bx Y
+bx `
+bx _
+bx G
+bx H
+bx C
+bx T
+b0 5
+b0 Q
+b0 c
+bx "
+bx 4
+bx E
+bx !
+bx 0
+bx F
+bx L
+bx V
+b0 6
+b0 @
+b0 ]
+b0 a
+b0 7
+b0 R
+b0 \
+0%
+1$
+#5
+0$
+#6
+bx )
+bx [
+bx f
+bx 5
+bx Q
+bx c
+x'
+bx #
+bx ;
+bx A
+bx S
+bx d
+bx 6
+bx @
+bx ]
+bx a
+bx 7
+bx R
+bx \
+1$
+#7
+0$
+#8
+1$
+#9
+0$
+#10
+1$
+#11
+0$
+#12
+1$
+#13
+0$
+#14
+1$
+#15
+0$
+#16
+1$
+#17
+0$
+#18
+1$
+#19
+0$
+#20
+1$
+#21
+0$
+#22
+1$
+#23
+0$
+#24
+1$
+#25
+0$
+#26
+1$
+#27
+0$
+#28
+1$
+#29
+0$
+#30
+1$
+#31
+0$
+#32
+1$
+#33
+0$
+#34
+1$
+#35
+0$
+#36
+1$
+#37
+0$
+#38
+1$
+#39
+0$
+#40
+1$
+#41
+0$
+#42
+1$
+#43
+0$
+#44
+1$
+#45
+0$
+#46
+1$
+#47
+0$
+#48
+1$
+#49
+0$
+#50
+1$
+#51
+0$
+#52
+1$
+#53
+0$
+#54
+1$
+#55
+0$
+#56
+1$
+#57
+0$
+#58
+1$
+#59
+0$
+#60
+1$
+#61
+0$
+#62
+1$
+#63
+0$
+#64
+1$
+#65
+0$
+#66
+1$
+#67
+0$
+#68
+1$
+#69
+0$
+#70
+1$
+#71
+0$
+#72
+1$
+#73
+0$
+#74
+1$
+#75
+0$
+#76
+1$
+#77
+0$
+#78
+1$
+#79
+0$
+#80
+1$
+#81
+0$
+#82
+1$
+#83
+0$
+#84
+1$
+#85
+0$
+#86
+1$
+#87
+0$
+#88
+1$
+#89
+0$
+#90
+1$
+#91
+0$
+#92
+1$
+#93
+0$
+#94
+1$
+#95
+0$
+#96
+1$
+#97
+0$
+#98
+1$
+#99
+0$
+#100
+1$
+#101
+0$
+#102
+1$
+#103
+0$
+#104
+1$
+#105
+0$
+#106
+1$
+#107
+0$
+#108
+b11111111111111100000001011001100 ,
+b11111111111111100000001011001100 ?
+b11111111111111100000001011001100 N
+b11111111111111111000000010110011 *
+b11111111111111111000000010110011 >
+b11111111111111111000000010110011 D
+b11111111111111111000000010110011 b
+b100 W
+b1 X
+b10 Z
+b1 Y
+b10 `
+b1 _
+b0 G
+b0 H
+b1000000010110011 C
+b110011 T
+b1000001000000010110011 "
+b1000001000000010110011 4
+b1000001000000010110011 E
+b0 !
+b0 0
+b0 F
+b0 L
+b0 V
+b100000 ^
+1%
+1$
+#109
+bx00 ,
+bx00 ?
+bx00 N
+bx *
+bx >
+bx D
+bx b
+bx W
+bx X
+bx Z
+bx Y
+bx `
+bx _
+bx G
+bx H
+bx C
+bx T
+bx "
+bx 4
+bx E
+bx !
+bx 0
+bx F
+bx L
+bx V
+0%
+0$
+#110

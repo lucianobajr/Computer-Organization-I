@@ -51,8 +51,4 @@ module  data_memory (mem_write, mem_read, address, write_data, result, reset, cl
   end
 endmodule
 
-<<<<<<< HEAD
 //data_memory
-=======
-//data_memory
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea

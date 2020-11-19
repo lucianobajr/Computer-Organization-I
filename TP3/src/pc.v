@@ -32,8 +32,4 @@ module result_pc (A, B, Sum, ANDBranch, clock);
       Sum <= A;
     end
   end
-<<<<<<< HEAD
 endmodule
-=======
-endmodule
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea

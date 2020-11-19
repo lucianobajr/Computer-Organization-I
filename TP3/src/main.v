@@ -33,13 +33,8 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
   );
   
   InstructionMemory CatchIns (
-<<<<<<< HEAD
     .endereco(Prx_PC),
     .instrucaoOut(Instruction)
-=======
-    .ReadAddress(Prx_PC), 
-    .Instruction(Instruction)
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea
   );
 
   control CatchVal (

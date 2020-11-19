@@ -1,4 +1,4 @@
-all: main.v
+all: datapath_tb.v
 	iverilog datapath_tb.v -o output
 
 run: output

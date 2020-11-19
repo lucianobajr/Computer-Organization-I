@@ -24,11 +24,7 @@ module reg_file(
   always @ (posedge reset or posedge clock) begin
   
       if (reset)
-<<<<<<< HEAD
           for (i=0; i<32; i=i+1) array[i] <= 64'b0;
-=======
-        for (i=0; i<32; i=i+1) array[i] <= 63'b0;
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea
       else if (writereg)
         array [rd] = writedata;
         

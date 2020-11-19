@@ -28,8 +28,4 @@ module alu_control(funct7,funct3,alu_operation,alu_ctr);
         end
     end
 
-<<<<<<< HEAD
 endmodule
-=======
-endmodule
->>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea
