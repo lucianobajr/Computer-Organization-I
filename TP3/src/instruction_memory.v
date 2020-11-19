@@ -1,14 +1,18 @@
-// module intruction_memory(address, read_data);
-//     input [5:0] address;
-//     output [31:0] read_data;
-//     reg [31:0] RAM[0:63];
+<<<<<<< HEAD
+module InstructionMemory(endereco, instrucaoOut);
+     
+     input [31:0] endereco;
+     
+     output [31:0] instrucaoOut;
+     
+     reg [31:0] RAM [0:3];
 
-//     initial $readmemh("instructions.bin", RAM);
-//     assign read_data = RAM[address];
-// endmodule
+     initial $readmemb("instrucoes.bin", (RAM));
+     
+     assign instrucaoOut = RAM[endereco/4];
 
-// // intruction_memory --> LUCIANO
-
+endmodule
+=======
 module InstructionMemory (ReadAddress, Instruction);
   input wire [31:0]ReadAddress;
   output reg [31:0]Instruction;
@@ -27,3 +31,4 @@ module InstructionMemory (ReadAddress, Instruction);
     endcase
   end
 endmodule
+>>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea

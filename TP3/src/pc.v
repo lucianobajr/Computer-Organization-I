@@ -1,13 +1,3 @@
-// module program_counter (in_count,end_count,clock);
-//   input clock;
-//   input [31:0] in_count;
-//   output reg[31:0] end_count;
-//   always @ (posedge clock) begin
-//     end_count = in_count;
-//   end
-// endmodule
-// //pc
-
 module program_counter (pc, reset, pc_next);
   input wire reset;
   output reg [31:0] pc;
@@ -42,4 +32,8 @@ module result_pc (A, B, Sum, ANDBranch, clock);
       Sum <= A;
     end
   end
+<<<<<<< HEAD
 endmodule
+=======
+endmodule
+>>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea

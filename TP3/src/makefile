@@ -1,8 +1,8 @@
-all: TopLevelSimulation.v
-	iverilog TopLevelSimulation.v -o Processor
+all: main.v
+	iverilog datapath_tb.v -o output
 
-run: Processor
-	./Processor
+run: output
+	./output
 
-gtk: MIPS.vcd
-	gtkwave MIPS.vcd
+gtk: datapath.vcd
+	gtkwave datapath.vcd

@@ -51,18 +51,8 @@ module  data_memory (mem_write, mem_read, address, write_data, result, reset, cl
   end
 endmodule
 
-
-// module data_memory(clock, write_Enable, address, write_Data, read_Data);
-//    input clock, write_Enable;
-//    input[5:0] address;
-//    input[31:0] write_Data;
-//    output[31:0] read_Data;
-//    reg [31:0] RAM2[0:63];
-   
-//    assign read_Data = RAM2[address[5:2]];
-
-//    always @(posedge clock) begin
-//       if (write_Enable) RAM2[address[5:2]] <= write_Data;
-//    end
-
-// endmodule
+<<<<<<< HEAD
+//data_memory
+=======
+//data_memory
+>>>>>>> 02683fd9350eb76d9961f4fce0fbf8f65f9986ea
