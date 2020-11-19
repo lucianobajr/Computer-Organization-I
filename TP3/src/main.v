@@ -14,7 +14,8 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
   output wire [31:0] Prx_PC, Instruction, ALUResult;
   wire [31:0] ResultPC, Soma;
   wire [31:0] ValSignExtend, DataAux, ShiftValue, ReadData, PC;
-  wire [31:0] Data1, Data2,WriteData;
+  wire [31:0] Data, Data2, WriteData1;
+  wire [63:0] Data1, WriteData2, Data3;
   wire WriteReg;
   wire [3:0]ALUCtrl;
   wire [4:0] RegWrite;
@@ -72,10 +73,10 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .rs1(Instruction[19:15]),  
     .rs2(Instruction[24:20]),  
     .writereg(WriteReg),   
-    .writedata(WriteData),  
+    .writedata(WriteData2),  
     .rd(Instruction[11:7]),   
     .readdata1(Data1),  
-    .readdata2(Data2),   
+    .readdata2(Data3),   
     .clock(clock),  
     .reset(Reset)
   );
@@ -89,7 +90,7 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
 
   alu CatchResult ( 
     .alu_control(ALUCtrl),  
-    .a(Data1),   
+    .a(Data),   
     .b(DataAux),  
     .alu_out(ALUResult), 
     .zero(Zero));
@@ -123,6 +124,6 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .data0(ALUResult), 
     .data1(ReadData), 
     .select(MemtoReg), 
-    .out(WriteData));
+    .out(WriteData1));
 
 endmodule
