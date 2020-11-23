@@ -1,11 +1,20 @@
-module  data_memory (mem_write, mem_read, address, write_data, result, reset, clock);
+module  data_memory (
+  mem_write, 
+  mem_read, 
+  address, 
+  write_data, 
+  result, 
+  reset, 
+  clock
+);
+
   input wire mem_write, mem_read, reset, clock;
   input wire [31:0]  address;
   input wire [31:0] write_data;
   output reg [31:0] result;
   reg [31:0] dataMemory [31:0];
 
-  always @ (posedge clock) begin // write the register with new value if Regwrite is high
+  always @ (posedge clock) begin
     if (reset) begin
       dataMemory[0] <= 32'd0;
       dataMemory[1] <= 32'd1;
@@ -50,5 +59,3 @@ module  data_memory (mem_write, mem_read, address, write_data, result, reset, cl
     end
   end
 endmodule
-
-//data_memory

@@ -1,22 +1,32 @@
-module program_counter (pc, reset, pc_next);
-  input wire reset;
-  output reg [31:0] pc;
-  output reg [31:0] pc_next;
-  always @ (*) begin
-    if(reset) begin
-      pc_next <= 32'd0;
+module program_counter(clock, reset, data_in, data_out);
+    input clock;
+    input reset;
+    input [31:0] data_in;
+    output reg [31:0] data_out;
+
+    always @ (posedge clock) begin
+        if (reset) begin
+          data_out <= 32'd0;
+        end
+            
+        else begin
+          data_out <= data_in; 
+        end
     end
-    else begin
-      pc_next <= pc;
-    end
-  end
 endmodule
 
-module Sum4 (pc, sum);
-  input wire [31:0]pc;
-  output reg [31:0]sum;
+module pcplus4 (pcIn, pcOut,clock,reset);
+  input clock;
+  input reset;
+  input wire [31:0] pcIn;
+  output reg [31:0] pcOut;
   always @ (*) begin
-    sum <= pc + 32'd4;
+    if(reset) begin
+     pcOut <= 0;
+    end
+    else begin
+      pcOut <= pcIn +32'd4;
+    end
   end
 endmodule
 

@@ -1,5 +1,5 @@
 `include "pc.v"
-`include "instruction_memory.v"
+`include "inst_memory.v"
 `include "data_memory.v"
 `include "reg_file.v"
 `include "alu.v"
@@ -12,29 +12,29 @@
 module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
   input wire clock, Reset;
   output wire [31:0] Prx_PC, Instruction, ALUResult;
-  wire [31:0] ResultPC, Soma;
+  wire [31:0] Soma;
   wire [31:0] ValSignExtend, DataAux, ShiftValue, ReadData, PC;
-  wire [31:0] Data, Data2, WriteData1;
-  wire [63:0] Data1, WriteData2, Data3;
-  wire WriteReg;
-  wire [3:0]ALUCtrl;
-  wire [4:0] RegWrite;
-  wire Cout, RegDst, Branch, MemRead, MemtoReg, MemWrite, RegWriteControl ,ALUSrc, Zero, ANDBranch;
-  wire [1:0]ALUOp;
+  wire [31:0] Data1, Data2, WriteData;
+  wire [3:0] ALUCtrl;
+  wire RegDst, Branch, MemRead, MemtoReg, MemWrite, RegWrite, ALUSrc, Zero, ANDBranch;
+  wire [1:0] ALUOp;
 
-  program_counter CatchPC (
-    .pc(PC), 
-    .reset(Reset), 
-    .pc_next(Prx_PC)
-  );
-
-  Sum4 PC4 (
-    .pc(Prx_PC), 
-    .sum(PC)
+  program_counter CatchPC(
+    .clock(clock),
+    .reset(Reset),
+    .data_in(PC),
+    .data_out(Prx_PC)
   );
   
-  InstructionMemory CatchIns (
-    .endereco(Prx_PC),
+  pcplus4 PC4 (
+    .pcIn(Prx_PC), 
+    .pcOut(PC),
+    .clock(clock),
+    .reset(Reset)
+  );
+
+  instruction_memory CatchIns (
+    .endereco(PC),
     .instrucaoOut(Instruction)
   );
 
@@ -46,12 +46,12 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .MemtoReg(MemtoReg), 
     .MemWrite(MemWrite), 
     .alusrc(ALUSrc), 
-    .regwrite(RegWriteControl), 
+    .regwrite(RegWrite), 
     .aluop(ALUOp)
   );
 
-  extensao_sinal CatchImdEnd (
-    .in(Instruction[15:0]), 
+  signal_extend CatchImdEnd (
+    .in(Instruction), 
     .extensor(ValSignExtend)
   );
 
@@ -66,17 +66,17 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .data0(Instruction[19:15]), //rs1
     .data1(Instruction[24:20]), //rs2
     .select(RegDst), 
-    .out(WriteReg)
+    .out(RegWrite)
   );
 
   reg_file Reg (
     .rs1(Instruction[19:15]),  
     .rs2(Instruction[24:20]),  
-    .writereg(WriteReg),   
-    .writedata(WriteData2),  
+    .writereg(RegWrite),   
+    .writedata(WriteData),  
     .rd(Instruction[11:7]),   
     .readdata1(Data1),  
-    .readdata2(Data3),   
+    .readdata2(Data2),   
     .clock(clock),  
     .reset(Reset)
   );
@@ -86,44 +86,50 @@ module datapath (clock, Reset, Prx_PC, ALUResult, Instruction);
     .data1(ValSignExtend), 
     .select(ALUSrc), 
     .out(DataAux)
-    );
+  );
 
   alu CatchResult ( 
     .alu_control(ALUCtrl),  
-    .a(Data),   
+    .a(Data1),   
     .b(DataAux),  
     .alu_out(ALUResult), 
-    .zero(Zero));
+    .zero(Zero)
+  );
 
-  ShiftLeft2 CatchBranch (
+  shift_left CatchBranch (
     .ValSignExtend(ValSignExtend), 
-    .Result(ShiftValue));
+    .Result(ShiftValue)
+  );
 
   AND CatchBranch1 (
     .A(Branch), 
     .B(Zero), 
-    .Exit(ANDBranch));
+    .Exit(ANDBranch)
+  );
 
   result_pc CatchPC2 (
     .A(PC), 
     .B(ShiftValue), 
     .Sum(Soma), 
     .ANDBranch(ANDBranch), 
-    .clock(clock));
+    .clock(clock)
+  );
 
   data_memory CatchDat (
     .mem_write(MemWrite), 
     .mem_read(MemRead), 
     .address(ALUResult), 
-    .write_data(Data2), 
+    .write_data(WriteData), 
     .result(ReadData), 
     .reset(Reset), 
-    .clock(clock));
+    .clock(clock)
+  );
 
   mux2 u4 (
     .data0(ALUResult), 
-    .data1(ReadData), 
+    .data1(Data1),
     .select(MemtoReg), 
-    .out(WriteData1));
-
+    .out(WriteData)
+  ); 
+  
 endmodule

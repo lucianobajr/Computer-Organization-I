@@ -20,7 +20,7 @@ module control(
     output reg RegDst;
 
 
-    parameter R_Type = 7'b0110011;
+    parameter R_Format = 7'b0110011;
     parameter LD = 7'b0000011;
     parameter SD = 7'b0100011;
     parameter BEQ = 7'b1100011;
@@ -28,7 +28,7 @@ module control(
     always @(*) 
     begin
         case (opcode)
-            R_Type:
+            R_Format:
                 begin
                     Branch = 1'b0;
                     MemRead = 1'b0;
@@ -37,6 +37,7 @@ module control(
                     alusrc = 1'b0;
                     regwrite = 1'b1;
                     aluop = 2'b10;
+                    RegDst = 1'b1;
                 end
             LD:
                 begin
@@ -47,6 +48,7 @@ module control(
                     alusrc = 1'b1;
                     regwrite = 1'b1;
                     aluop = 2'b00;
+                    RegDst = 1'b0;
                 end
             SD:
                 begin
@@ -57,6 +59,7 @@ module control(
                     alusrc = 1'b1;
                     regwrite = 1'b0;
                     aluop = 2'b00;
+                    RegDst = 1'bx;
                 end
             BEQ:
                 begin
@@ -67,10 +70,8 @@ module control(
                     alusrc = 1'b0;
                     regwrite = 1'b0;
                     aluop = 2'b01;
+                    RegDst = 1'bx;
                 end 
-
-            default: $display("Opcode não identificado!!!");
         endcase
     end
-
 endmodule

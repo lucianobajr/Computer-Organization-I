@@ -1,12 +1,21 @@
-module extensao_sinal(
-    input wire [15:0] in,
-    output reg [31:0] extensor
+module signal_extend(
+   in,
+   extensor
 );
-    
-always @(*) 
-    begin
-        extensor <= {{16{in[15]}},in};   
-    end
-endmodule
+    input [31:0] in;
+    output[31:0] extensor;
+    reg[31:0] IMM_OUT;
+    wire[6:0] opcode;
+    wire[2:0] funct3;
 
-// extensao_sinal
+    assign extensor = IMM_OUT;
+    assign opcode = in[6:0];
+    assign funct3 = in[14:12];
+    always @(in) 
+    case(opcode)
+        7'b0100011: IMM_OUT <= { {21{in[31]}}, in[30:25], in[11:8], in[7]};     // SD       -> S-Type
+        7'b0000011: IMM_OUT <= { {21{in[31]}}, in[30:25], in[24:21], in[20]};   // LD       -> I-Type
+        7'b1100011: IMM_OUT <= { {20{in[31]}}, in[7], in[30:25], in[11:8], {1{1'b0}}};  // BRANCH -> B-Type
+        default: IMM_OUT <= 32'bx;
+    endcase
+endmodule
