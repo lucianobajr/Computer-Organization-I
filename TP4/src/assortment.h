@@ -1,3 +1,6 @@
+#ifndef ASSORTMENT_h
+#define ASSORTMENT_h
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,3 +24,5 @@ void heapSort(int arr[], int n);
 // Common functions
 void printArray(int arr[], int size);
 void swap(int *a, int *b);
+
+#endif

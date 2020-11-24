@@ -1,5 +1,5 @@
 all:
-	gcc main.c assortment.c  -o main
+	gcc main.c menu.c assortment.c  -o main
 run:
 	./main
 clean:
