@@ -59,6 +59,7 @@ void menu()
     }
 
     int n = sizeof(arr) / sizeof(arr[0]);
+    
     printf("\n\nANTES DE ORDENAR\n\n");
     printArray(arr, n);
 
