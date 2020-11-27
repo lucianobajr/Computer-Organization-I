@@ -3,6 +3,9 @@
 
 void menu()
 {
+    FILE *teste;
+    char *name;
+    int tam,position = 0;
     int resp[2];
 
     print_menu1();
@@ -10,10 +13,6 @@ void menu()
 
     print_menu2();
     scanf("%d", &resp[1]);
-
-    FILE *teste;
-    char *name;
-    int tam;
 
     switch (resp[1])
     {
@@ -35,12 +34,13 @@ void menu()
         break;
 
     default:
+        printf("\nOpção não existe!\n");
+        exit(0);
         break;
     }
 
     int arr[tam];
-    int aux;
-    int position = 0;
+    int n = sizeof(arr) / sizeof(arr[0]);
 
     teste = fopen(name, "r");
     if (teste == NULL)
@@ -51,15 +51,11 @@ void menu()
     {
         while (!feof(teste))
         {
-
-            fscanf(teste, "%d", &aux);
-            arr[position] = aux;
+            fscanf(teste, "%d", &arr[position]);
             position++;
         }
     }
 
-    int n = sizeof(arr) / sizeof(arr[0]);
-    
     printf("\n\nANTES DE ORDENAR\n\n");
     printArray(arr, n);
 
@@ -78,6 +74,8 @@ void menu()
         heapSort(arr, n);
         break;
     default:
+        printf("\nOpção seleciona não existe!\n");
+        exit(0);
         break;
     }
 

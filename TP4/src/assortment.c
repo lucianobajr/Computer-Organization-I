@@ -1,5 +1,25 @@
 #include "assortment.h"
 
+// Common Functions
+void swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+// END Common Functions
+
+
 // -------------------START-BUBLE SORT---------------------
 void bubbleSort(int arr[], int n)
 {
@@ -71,12 +91,6 @@ void radixsort(int arr[], int n)
 // --------------------END-RADIXSORT----------------------
 
 // --------------------START-QUICKSORT--------------------
-void swap(int *a, int *b)
-{
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
 
 /* This function takes last element as pivot, places 
    the pivot element at its correct position in sorted 
@@ -118,15 +132,6 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
-}
-
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
 }
 // --------------------END-QUICKSORT----------------------
 

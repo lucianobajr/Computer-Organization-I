@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Common functions
+void printArray(int arr[], int size);
+void swap(int *a, int *b);
+
 // Bublesort
 void bubbleSort(int arr[], int n);
 
@@ -21,8 +25,5 @@ void quickSort(int arr[], int low, int high);
 void heapify(int arr[], int n, int i);
 void heapSort(int arr[], int n);
 
-// Common functions
-void printArray(int arr[], int size);
-void swap(int *a, int *b);
 
 #endif
