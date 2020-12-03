@@ -1,25 +1,5 @@
 #include "assortment.h"
 
-// Common Functions
-void swap(int *a, int *b)
-{
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
-
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
-
-// END Common Functions
-
-
 // -------------------START-BUBLE SORT---------------------
 void bubbleSort(int arr[], int n)
 {
@@ -35,7 +15,6 @@ void bubbleSort(int arr[], int n)
 // --------------------END-BUBLE SORT----------------------
 
 // --------------------START-RADIXSORT--------------------
-
 // A utility function to get maximum value in arr[]
 int getMax(int arr[], int n)
 {
@@ -91,6 +70,12 @@ void radixsort(int arr[], int n)
 // --------------------END-RADIXSORT----------------------
 
 // --------------------START-QUICKSORT--------------------
+void swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
 
 /* This function takes last element as pivot, places 
    the pivot element at its correct position in sorted 
@@ -132,6 +117,15 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
+}
+
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 }
 // --------------------END-QUICKSORT----------------------
 
@@ -178,3 +172,44 @@ void heapSort(int arr[], int n)
     }
 }
 // --------------------END-HEAPSORT----------------------
+
+// --------------------START-HEAPSORT-OPTIMIZED--------------------
+int heap_sort(int v[], int n) 
+{
+   int m, p, f, max, t;
+   build_max_heap(v, n);
+   for (m = n; m > 1; --m) {
+      max = v[1];
+      p = 1, f = 2;
+      while (f <= m) {
+         if (f < m && v[f] < v[f+1]) ++f;
+         v[p] = v[f];
+         p = f, f = 2*p;
+      }
+      f = p;
+      if (f < m) {
+         t = v[m]; 
+         while (f > 1 && v[p=f/2] < t) { 
+            v[f] = v[p];
+            f = p;
+         }
+         v[f] = t;
+      }
+      v[m] = max;
+   }
+}
+
+int build_max_heap (int v[], int n) {
+   int m, p, f, t;
+   for (m = 1; m < n; ++m) {
+      f = m+1;
+      t = v[f];
+      while (f > 1 && v[p = f/2] < t) {
+         v[f] = v[p];
+         f = p;
+      }
+      v[f] = t;
+   }
+}
+
+// --------------------END-HEAPSORT-OPTIMIZED----------------------
