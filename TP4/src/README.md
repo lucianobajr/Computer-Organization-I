@@ -9,3 +9,5 @@ https://www.geeksforgeeks.org/heap-sort/
 https://developers.redhat.com/blog/2014/03/10/determining-whether-an-application-has-poor-cache-performance-2/
 
 https://valgrind.org/docs/manual/cg-manual.html
+
+https://www.ic.unicamp.br/~celio/mc404-2013/arm-examples/sorting/stolfiheapsort.c
