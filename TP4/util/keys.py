@@ -5,5 +5,5 @@ t=int(input("Digite a quantidade de itens no arquivo:"))
 arq=open("../src/data/%d.txt"%t,"w")
 chave=[random.randint(0,100)for i in range(t)]
 for i in range(t):
-    arq.write("%d \n"%(chave[i]))
+    arq.write("%d, "%(chave[i]))
 arq.close()

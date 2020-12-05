@@ -174,7 +174,7 @@ void heapSort(int arr[], int n)
 // --------------------END-HEAPSORT----------------------
 
 // --------------------START-HEAPSORT-OPTIMIZED--------------------
-int heap_sort(int v[], int n) 
+void heap_sort(int v[], int n) 
 {
    int m, p, f, max, t;
    build_max_heap(v, n);
@@ -198,18 +198,17 @@ int heap_sort(int v[], int n)
       v[m] = max;
    }
 }
-
-int build_max_heap (int v[], int n) {
-   int m, p, f, t;
-   for (m = 1; m < n; ++m) {
-      f = m+1;
-      t = v[f];
-      while (f > 1 && v[p = f/2] < t) {
-         v[f] = v[p];
-         f = p;
-      }
-      v[f] = t;
-   }
+void build_max_heap(int *arr, int length)
+{
+    for (int i = 1; i < length; i++)
+    {
+        int f = i + 1;
+        while (f > 1 && arr[f / 2] < arr[f])
+        {
+            swap(&arr[f / 2], &(arr[f]));
+            f /= 2;
+        }
+    }
 }
 
 // --------------------END-HEAPSORT-OPTIMIZED----------------------

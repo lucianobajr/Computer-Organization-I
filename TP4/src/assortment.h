@@ -24,8 +24,8 @@ void quickSort(int arr[], int low, int high);
 // Heapsort
 void heapify(int arr[], int n, int i);
 void heapSort(int arr[], int n);
-int build_max_heap (int v[], int n);
-int heap_sort (int v[], int n); 
+void build_max_heap (int *arr, int length);
+void heap_sort (int v[], int n); 
 
 //int constroi_heap (int v[], int n);
 
