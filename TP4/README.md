@@ -41,6 +41,31 @@ $   make valgrind
 $   make perf
 ```
 
+# Gerar os arquivos para teste
+
+o programa 'keys.py' gera os .txt para os casos de teste.Desta forma, basta informar vinha linha de comando qual a quantidade de números desejados  e será gerado um arquivo na pasta 'data' com o nome informando a quantidade de números no arquivo.
+
+## Executar com keys.py
+```sh   
+$   python3 keys.py
+```
+
+## Programa keys.py
+
+```py
+import random
+from random import seed
+seed(100)
+t=int(input("Digite a quantidade de itens no arquivo:"))
+arq=open("../src/data/%d.txt"%t,"w")
+chave=[random.randint(0,100)for i in range(t)]
+for i in range(t):
+    arq.write("%d \n"%(chave[i]))
+arq.close()
+```
+
+
+
 
 `Install Valgrind`
     
@@ -56,3 +81,4 @@ $   make perf
     or
     
     sudo apt-get install linux-tools-common linux-tools-generic linux-tools-`uname -r`
+
