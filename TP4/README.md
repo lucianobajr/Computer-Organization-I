@@ -21,7 +21,6 @@
     │   
 
 
-
 ## Compilar Trabalho
 ```sh
 $   make
