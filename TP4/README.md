@@ -43,7 +43,7 @@ $   make perf
 
 # Gerar os arquivos para teste
 
-o programa 'keys.py' gera os .txt para os casos de teste.Desta forma, basta informar vinha linha de comando qual a quantidade de números desejados  e será gerado um arquivo na pasta 'data' com o nome informando a quantidade de números no arquivo.
+o programa 'keys.py' gera os .txt para os casos de teste.Desta forma, basta informar via linha de comando qual a quantidade de números desejados  e será gerado um arquivo na pasta 'data' com o nome informando a quantidade de números no arquivo.
 
 ## Executar com keys.py
 ```sh   
@@ -65,7 +65,7 @@ arq.close()
 ```
 
 
-
+## Instalação do Perf e do Valgrind
 
 `Install Valgrind`
     
