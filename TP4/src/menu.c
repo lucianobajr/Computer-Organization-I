@@ -147,6 +147,18 @@ void print_menu1()
     printf("|");
 
     printf("\n|           ");
+    for (i = 0; i < 27; i++)
+    {
+        fputs(" ", stdout);
+    }
+    printf("Digite (5) para Utilizar o HeapSort Otimizado");
+    for (i = 0; i < 30; i++)
+    {
+        fputs(" ", stdout);
+    }
+    printf("|");
+
+    printf("\n|           ");
     for (i = 0; i < 102; i++)
     {
         fputs(" ", stdout);
@@ -163,6 +175,7 @@ void print_menu1()
     printf("------------->");
     fflush(stdin);
 }
+
 
 void print_menu2()
 {
